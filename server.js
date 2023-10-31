@@ -26,14 +26,23 @@ async function createServer(root = process.cwd()) {
 
     app.use("*", async (req, res) => {
         console.log(`Request to ${req.originalUrl}`);
+        const url = req.originalUrl;
 
         try {
-            const { render } = await server.ssrLoadModule("/src/entry-server.tsx");
-            // const {render} = await server.ssrLoadModule("/src/entry-server-async.tsx");
+            // const { render } = await server.ssrLoadModule("/src/entry-server.tsx");
+            const {render} = await server.ssrLoadModule("/src/entry-server-async.tsx");
             // const {render} =  server.ssrLoadModule("/src/entry-server-stream.tsx");
             // render().pipe(res);
-            const html = await render();
-            console.log('html',html);
+            // const html = await render();
+
+            const context = {};
+            const html = await render(url, context);
+
+            if (context.url) {
+                // Somewhere a `<Redirect>` was rendered
+                return res.redirect(301, context.url);
+            }
+            // console.log('html',html);
             // const context = render(res, req.originalUrl);
 
             // if (context.url) {
