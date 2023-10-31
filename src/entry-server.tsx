@@ -1,4 +1,4 @@
-import { pipeToNodeWritable, renderToString } from 'solid-js/web';
+import { renderToString,renderToStringAsync } from 'solid-js/web';
 import { Router, RouterOutput } from '@solidjs/router';
 import App from './App';
 
