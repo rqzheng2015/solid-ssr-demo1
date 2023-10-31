@@ -1,4 +1,4 @@
-import {renderToString, renderToStringAsync} from 'solid-js/web';
+import {renderToStringAsync} from 'solid-js/web';
 import {Router} from '@solidjs/router';
 import App from './App';
 

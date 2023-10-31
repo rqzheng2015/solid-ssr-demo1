@@ -40,7 +40,6 @@ export default () => {
     async function getAsyncData() {
         const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
         const json = await response.json()
-        console.log('response', json);
         return json
     }
 
@@ -51,7 +50,7 @@ export default () => {
                 <h1>Solid JS</h1>
                 <h3>with Routing and SSR using Stackblitz Web Containers</h3>
             </header>
-            <p>joke: {joke() && <div>joke:{joke()}</div>}</p>
+            <p>joke:{joke() ?? ""}</p>
             <p>title:{data()?.title ?? ""}</p>
             <nav>
                 <NavLink href="/" end>

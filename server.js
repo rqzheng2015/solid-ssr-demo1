@@ -28,9 +28,12 @@ async function createServer(root = process.cwd()) {
         console.log(`Request to ${req.originalUrl}`);
 
         try {
-            // const { render } = await server.ssrLoadModule("/src/entry-server.tsx");
-            const {render} = await server.ssrLoadModule("/src/entry-server-async.tsx");
+            const { render } = await server.ssrLoadModule("/src/entry-server.tsx");
+            // const {render} = await server.ssrLoadModule("/src/entry-server-async.tsx");
+            // const {render} =  server.ssrLoadModule("/src/entry-server-stream.tsx");
+            // render().pipe(res);
             const html = await render();
+            console.log('html',html);
             // const context = render(res, req.originalUrl);
 
             // if (context.url) {
@@ -40,7 +43,9 @@ async function createServer(root = process.cwd()) {
             //   res.status(302).redirect(context.url);
             // }
             // 6. Send the rendered HTML back.
+
             res.status(200).set({"Content-Type": "text/html"}).end(html);
+            // html.pipe(res);
         } catch (e) {
             server && server.ssrFixStacktrace(e);
             console.log(e.stack);
