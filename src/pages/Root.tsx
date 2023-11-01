@@ -41,7 +41,7 @@ export default () => {
 
     async function getAsyncData() {
         // console.log('get async data now!!!');
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+        const response = await Fetch('https://jsonplaceholder.typicode.com/todos/1')
         const json = await response.json()
         return json.title;
     }
