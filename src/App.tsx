@@ -1,5 +1,5 @@
-import {HydrationScript, isServer, } from 'solid-js/web';
-import {Suspense, lazy, createEffect, onMount, createSignal,createStore} from 'solid-js';
+import {HydrationScript, isServer,} from 'solid-js/web';
+import {Suspense, lazy, createEffect, onMount, createSignal} from 'solid-js';
 import {Routes, Route, Router} from '@solidjs/router';
 
 import NotFound from './pages/NotFound';
@@ -20,8 +20,6 @@ function dataFn(label: string) {
 }
 
 
-
-
 export default () => {
     return (
         <html lang="en" $ServerOnly>
@@ -33,7 +31,7 @@ export default () => {
             <HydrationScript/>
         </head>
         <body>
-        <div id="app" class="hello" className="world">
+        <div id="app" class="hello">
             <Routes>
                 <Route path="/" component={Root} data={dataFn('Root')}>
                     <Route path="/" component={Home} data={dataFn('Home')}/>
